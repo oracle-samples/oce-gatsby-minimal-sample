@@ -1,0 +1,55 @@
+{
+  "name": "oce-gatsby-minimal-sample",
+  "version": "21.8.1",
+  "description": "A simple site built using Gatsby and loading content from Oracle Content Management.",
+  "author": "Oracle America, Inc.",
+  "license": "UPL-1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oracle/oce-gatsby-minimal-sample"
+  },
+  "bugs": {
+    "url": "https://github.com/oracle/oce-gatsby-minimal-sample/issues"
+  },
+  "keywords": [
+    "cms",
+    "javascript",
+    "gatsby",
+    "gatsbyjs",
+    "gatsby-source-oce",
+    "headless-cms",
+    "headless-sample",
+    "oracle-content-management",
+    "oracle-content-experience",
+    "oracle-cloud"
+  ],
+  "scripts": {
+    "postinstall": "gatsby telemetry --disable",
+    "build": "gatsby build --prefix-paths",
+    "develop": "gatsby develop",
+    "start": "npm run develop",
+    "serve": "gatsby serve --prefix-paths",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "lint": "eslint ./src/**/**.jsx"
+  },
+  "dependencies": {
+    "@oracle/gatsby-source-oce": "~1.1.1",
+    "dotenv": "~8.2.0",
+    "gatsby": "~3.5.0",
+    "gatsby-plugin-offline": "~4.5.0",
+    "gatsby-source-filesystem": "~3.5.0",
+    "prop-types": "~15.7.2",
+    "react": "~17.0.1",
+    "react-dom": "~17.0.1",
+    "typescript": "~4.0.3"
+  },
+  "devDependencies": {
+    "eslint": "~7.11.0",
+    "eslint-config-airbnb": "~18.2.0",
+    "eslint-plugin-import": "~2.22.1",
+    "eslint-plugin-jsx-a11y": "~6.4.1",
+    "eslint-plugin-react": "~7.21.5",
+    "eslint-plugin-react-hooks": "~4.2.0"
+  }
+}
