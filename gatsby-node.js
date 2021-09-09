@@ -19,7 +19,7 @@ exports.createPages = async ({ graphql, actions }) => {
   *  allImageData: Query to gather all displayed images for all pages
   */
   return graphql(`{
-    minimalMain: oceAsset(name: {eq: "MinimalMain"}) {
+    minimalMain: oceAsset(slug: {eq: "minimalmain"}) {
       description
       oceType
       oceFields {
