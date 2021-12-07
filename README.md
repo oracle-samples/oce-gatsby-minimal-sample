@@ -14,7 +14,7 @@ npm install
 
 ## Running the project
 
-> **NOTE:** If you need to use a proxy to reach the internet then define an PROXY_URL environment variable through the shell or in the .env file:
+> **NOTE:** If you need to use a proxy to reach the internet then define a `PROXY_URL` environment variable through the shell or in the .env file:
 
 ```shell
 export PROXY_URL=<scheme>://<proxyhost>:<port>

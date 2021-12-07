@@ -12,6 +12,9 @@ exports.createPages = async ({ graphql, actions }) => {
   const pageTemplate = path.resolve(
     'src/templates/pageTemplate.jsx',
   );
+  const peopleTemplate = path.resolve(
+    'src/templates/peopleTemplate.jsx',
+  );
 
   /* Query for all date used in creating pages.
   *  minimalMain: Query to find starting data structure (number of pages, etc...)
@@ -19,7 +22,7 @@ exports.createPages = async ({ graphql, actions }) => {
   *  allImageData: Query to gather all displayed images for all pages
   */
   return graphql(`{
-    minimalMain: oceAsset(slug: {eq: "minimalmain"}) {
+    minimalMain: oceAsset(slug: {eq: "minimalmaingraphql"}) {
       description
       oceType
       oceFields {
@@ -96,27 +99,29 @@ exports.createPages = async ({ graphql, actions }) => {
     * minimalMainPageResult.
     */
     minimalMainPagesResult.pages.forEach((page) => {
-      page.fields.sections.forEach((sectionPage) => {
-        allTextDataResult.nodes.forEach((sectionTexts) => {
-          if (sectionTexts.sections !== null) {
-            sectionTexts.sections.forEach((sectionText) => {
-              if (sectionText.id === sectionPage.id) {
-                sectionPage.textData = sectionText.fields;
-                if (sectionText.fields.image !== null) {
-                  allImageDataResult.nodes.forEach((image) => {
-                    if ((image.name)
-                      .localeCompare(sectionText.fields.image.name) === 0) {
-                      sectionPage.imageDir = image.staticURL;
-                    }
-                  });
-                } else {
-                  sectionPage.imageName = null;
+      if (page.slug !== 'people') {
+        page.fields.sections.forEach((sectionPage) => {
+          allTextDataResult.nodes.forEach((sectionTexts) => {
+            if (sectionTexts.sections !== null) {
+              sectionTexts.sections.forEach((sectionText) => {
+                if (sectionText.id === sectionPage.id) {
+                  sectionPage.textData = sectionText.fields;
+                  if (sectionText.fields.image !== null) {
+                    allImageDataResult.nodes.forEach((image) => {
+                      if ((image.name)
+                        .localeCompare(sectionText.fields.image.name) === 0) {
+                        sectionPage.imageDir = image.staticURL;
+                      }
+                    });
+                  } else {
+                    sectionPage.imageName = null;
+                  }
                 }
-              }
-            });
-          }
+              });
+            }
+          });
         });
-      });
+      }
     });
 
     /* Creates variable allPageNameHeader for all possible pages in the header menu
@@ -153,6 +158,18 @@ exports.createPages = async ({ graphql, actions }) => {
           component: pageTemplate,
           context: {
             page,
+            buildTag: process.env.BUILD_TAG,
+          },
+        });
+      } else if (page.slug.localeCompare('people') === 0) {
+        createPage({
+          path: '/people',
+          component: peopleTemplate,
+          context: {
+            page,
+            slug: 'people',
+            channelToken: process.env.CHANNEL_TOKEN,
+            buildTag: process.env.BUILD_TAG,
           },
         });
       } else {
@@ -161,6 +178,7 @@ exports.createPages = async ({ graphql, actions }) => {
           component: pageTemplate,
           context: {
             page,
+            buildTag: process.env.BUILD_TAG,
           },
         });
       }

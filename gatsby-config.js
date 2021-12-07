@@ -34,12 +34,23 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-source-graphql',
+      options: {
+        // This type will contain remote schema Query type
+        typeName: 'OCM',
+        // This is the field under which it's accessible
+        fieldName: 'ocm',
+        // URL to query from
+        url: `${process.env.SERVER_URL}/content/published/api/v1.1/graphql`,
+      },
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
         path: `${__dirname}/src/images/`,
       },
     },
-    'gatsby-plugin-offline',
+    'gatsby-plugin-react-helmet',
   ],
 };

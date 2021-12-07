@@ -5,14 +5,18 @@
 
 /* eslint-disable react/prop-types */
 /* eslint-disable no-restricted-syntax */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable global-require */
+/* eslint-disable import/no-absolute-path */
 
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Banner from '../components/Banner';
 import MainBody from '../components/MainBody';
 
-const Page = ({ pageContext: { page } }) => {
+const Page = ({ pageContext: { page, buildTag } }) => {
   /* Create page with sections in @page structure
   *  Dynamically select between announcement with button, without button, or main body
   */
@@ -47,9 +51,18 @@ const Page = ({ pageContext: { page } }) => {
     }
   }
 
+  const BUILD_TAG = buildTag || 'none';
+  const sdkPackage = require('/node_modules/@oracle/gatsby-source-oce/package.json');
+  const SDK_VERSION = sdkPackage.version;
+
   return (
     <>
       <div className="page">
+        <Helmet>
+          <meta name="description" content="Sample Minimal app created in Gatsby that uses Oracle Content Management" />
+          <meta name="BUILD_TAG" content={`${BUILD_TAG}`} />
+          <meta name="@oracle/gatsby-source-oce" content={`${SDK_VERSION}`} />
+        </Helmet>
         <Header headerImageDir={page.headerDir} headerAllPages={page.headerAllPages} />
         <div>
           {sectionItems}
