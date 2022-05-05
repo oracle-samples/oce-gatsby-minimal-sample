@@ -1,15 +1,15 @@
 {
   "name": "oce-gatsby-minimal-sample",
-  "version": "21.12.1",
+  "version": "22.4.2",
   "description": "A simple site built using Gatsby and Oracle Content Management.",
   "author": "Oracle America, Inc.",
   "license": "UPL-1.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/oracle/oce-gatsby-minimal-sample"
+    "url": "https://github.com/oracle-samples/oce-gatsby-minimal-sample"
   },
   "bugs": {
-    "url": "https://github.com/oracle/oce-gatsby-minimal-sample/issues"
+    "url": "https://github.com/oracle-samples/oce-gatsby-minimal-sample/issues"
   },
   "keywords": [
     "cms",
@@ -34,7 +34,7 @@
     "lint": "eslint ./src/**/**.jsx"
   },
   "dependencies": {
-    "@oracle/gatsby-source-oce": "~1.1.1",
+    "@oracle/gatsby-source-oce": "^1.2.4",
     "dotenv": "~8.2.0",
     "gatsby": "~3.14.0",
     "gatsby-plugin-offline": "~4.5.0",
